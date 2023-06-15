@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="329d67c16ab947658067071b11de60d7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="DBModel.Cart" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Customer" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Footwear" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.TransactionDetail" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.TransactionHeader" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="DBModel.FK_Cart_ToCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Cart_ToFootwear" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Transaction_ToCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_TransactionDetail_ToAlbum" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_TransactionDetail_ToTransactionHeader" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBModel.Brand" Width="1.5" PointX="0.75" PointY="11.75" />
+        <AssociationConnector Association="DBModel.FK_Footwear_ToBrand" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
