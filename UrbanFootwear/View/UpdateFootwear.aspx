@@ -1,16 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Header.Master" AutoEventWireup="true" CodeBehind="UpdateFootwear.aspx.cs" Inherits="UrbanFootwear.View.UpdateFootwear" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <style>
-        .form-group {
-            margin-top: 2vh;
-        }
-        .updateError {
-            color: red;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
+    <div class="container mt-4">
         <h2>Update Footwear</h2>
         <asp:Panel ID="updateFootwearPanel" runat="server">
             <div class="form-group">

@@ -22,21 +22,21 @@ namespace UrbanFootwear.View
                     string email = cookie.Values["Email"];
                     string password = cookie.Values["Password"];
 
-                    emailLogin.Text = email;
-                    passwordLogin.Text = password;
-                    rememberMeCheckbox.Checked = true;
+                    tbEmail.Text = email;
+                    tbPassword.Text = password;
+                    cbRemember.Checked = true;
                 }
             }
         }
 
         protected void loginbtn_Click(object sender, EventArgs e)
         {
-            string email = emailLogin.Text;
-            string password = passwordLogin.Text;
+            string email = tbEmail.Text;
+            string password = tbPassword.Text;
 
             if (!CustomerController.Login(email, password))
             {
-                loginError.Text = "Incorrect Credentials!";
+                lblError.Text = "Incorrect Credentials!";
                 return;
             }
             DBE db = new DBE();
@@ -45,7 +45,7 @@ namespace UrbanFootwear.View
 
             if (user != null)
             {
-                if (rememberMeCheckbox.Checked)
+                if (cbRemember.Checked)
                 {
                     HttpCookie cookie = new HttpCookie("RememberMe");
                     cookie.Values["Email"] = email;
@@ -62,7 +62,7 @@ namespace UrbanFootwear.View
                         Response.Cookies.Add(cookie);
                     }
                 }
-                Session["user"] = user;
+                Session["customer"] = user;
             }
             Response.Redirect("~/View/Home.aspx");
             return;

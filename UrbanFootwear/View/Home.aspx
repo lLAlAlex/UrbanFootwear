@@ -1,57 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Header.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="UrbanFootwear.View.Home" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .footwearImgContainer {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .footwearItem {
-            text-align: center;
-            margin-bottom: 5vh;
-        }
-        .footwearImg {
-            width: 30vh;
-            height: 30vh;
-            margin-left: 2vh;
-            margin-top: 2vh;
-            cursor: pointer;
-        }
-        .footwearName {
-            font-weight: bold;
-        }
-        .footwearActions {
-            margin-top: 1vh;
-        }
-        .btn {
-            margin-top: 2vh;
-            margin-left: 2vh;
-            margin-bottom: 6vh;
-        }
-    </style>
-    <script type="text/javascript">
-        function imageClicked(footwearId) {
-            window.location.href = "FootwearDetails.aspx?footwearId=" + footwearId;
-        }
-        function updateFootwear(footwearId) {
-            window.location.href = "UpdateFootwear.aspx?footwearId=" + footwearId;
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Button ID="insertBtn" runat="server" onclick="btnInsert_Click" CssClass="btn btn-primary" Text="Insert Footwear" />
-    <div class="footwearImgContainer">
-        <asp:Repeater ID="footwearRepeater" runat="server">
-            <ItemTemplate>
-                <div class="footwearItem">
-                    <img class="footwearImg" src='<%# ResolveUrl("../Assets/Footwears/" + Eval("FootwearImage")) %>' data-image-id='<%# Eval("FootwearID") %>' onclick='<%# "imageClicked(" + Eval("FootwearID") + "); return false;" %>' />
-                    <br />
-                    <span class="footwearName"><%# Eval("FootwearName") %></span>
-                    <div class="footwearActions">
-                        <asp:Button runat="server" Text="Update" CssClass="btn btn-primary" OnClientClick='<%# "updateFootwear(" + Eval("FootwearID") + "); return false;" %>' />
-                        <asp:Button runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="btnDelete_Click" ID="btnDelete" CommandArgument='<%# Eval("FootwearID") %>' />
+    <div class="container">
+        <h1 class="mt-4">Shoes</h1>
+
+        <% if (customer != null && customer.CustomerRole.Equals("admin"))
+            { %>
+        <!-- Admin Actions -->
+        <div class="mt-4">
+            <asp:Button ID="btnInsertFootwear" class="btn btn-success" runat="server" Text="Insert Artist" OnClick="btnInsertFootwear_Click" />
+        </div>
+        <% } %>
+
+        <!-- Artist Cards -->
+        <div class="row mt-4">
+            <asp:Repeater ID="footwearRepeater" runat="server" OnItemCommand="footwearRepeater_ItemCommand">
+                <ItemTemplate>
+                    <div class="col-md-4 mb-4">
+                        <asp:HyperLink ID="hl" NavigateUrl='<%# "~/View/FootwearDetails.aspx?id=" + Eval("FootwearID") %>' runat="server">
+                            <div class="card">
+                                <asp:Image ID="imgArtist" class="card-img-top" alt="Artist Image" runat="server" ImageUrl='<%# "~/Assets/Footwears/" + Eval("FootwearImage") %>' />
+                                <div class="card-body">
+                                    <h5 class="card-title"><%# Eval("FootwearName") %></h5>
+                                    <p class="card-title"><%# Eval("Brand.BrandName") %></p>
+                                    <% if (customer != null && customer.CustomerRole.Equals("admin"))
+                                        { %>
+                                    <div>
+                                        <asp:LinkButton ID="lbUpdate" class="btn btn-info mt-2 me-2" runat="server" CommandName="update" CommandArgument='<%# Eval("FootwearID") %>'>Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbDelete" class="btn btn-danger mt-2" runat="server" CommandName="delete" CommandArgument='<%# Eval("FootwearID") %>'>Delete</asp:LinkButton>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </asp:HyperLink>
                     </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </div>
 </asp:Content>

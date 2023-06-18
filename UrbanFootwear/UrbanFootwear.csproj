@@ -79,6 +79,10 @@
     <Content Include="App_Data\DB_log.ldf">
       <DependentUpon>DB.mdf</DependentUpon>
     </Content>
+    <Content Include="Assets\css\mdb.dark.min.css" />
+    <Content Include="Assets\css\mdb.dark.rtl.min.css" />
+    <Content Include="Assets\css\mdb.min.css" />
+    <Content Include="Assets\css\mdb.rtl.min.css" />
     <Content Include="Assets\Footwears\4e1e93fa-b6b5-445a-a86a-fab78b970f06.jpg" />
     <Content Include="Assets\Footwears\8a4291f6-2193-4c99-8c85-5c40aab757d0.jpg.jpg" />
     <Content Include="Assets\Footwears\jordan1banned.jpg" />
@@ -86,6 +90,8 @@
     <Content Include="Assets\Footwears\jordan1lostandfound.jpg" />
     <Content Include="Assets\Footwears\offwhite.jpg" />
     <Content Include="Assets\Footwears\offwhitechicago.jpg" />
+    <Content Include="Assets\js\mdb.min.js" />
+    <Content Include="Assets\logo\logo.svg" />
     <Content Include="DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DBModel.Context.cs</LastGenOutput>
@@ -100,7 +106,9 @@
     <Content Include="View\Home.aspx" />
     <Content Include="View\InsertFootwear.aspx" />
     <Content Include="View\Login.aspx" />
+    <Content Include="View\MyCart.aspx" />
     <Content Include="View\Register.aspx" />
+    <Content Include="View\TransactionHistory.aspx" />
     <Content Include="View\UpdateFootwear.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -112,8 +120,10 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controller\BrandController.cs" />
+    <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\FootwearController.cs" />
+    <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -132,18 +142,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Factory\CartFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
     <Compile Include="Factory\FootwearFactory.cs" />
+    <Compile Include="Factory\TransactionFactory.cs" />
     <Compile Include="Footwear.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Handler\BrandHandler.cs" />
+    <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Handler\FootwearHandler.cs" />
+    <Compile Include="Handler\TransactionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BrandRepository.cs" />
+    <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\FootwearRepository.cs" />
+    <Compile Include="Repository\TransactionRepository.cs" />
     <Compile Include="TransactionDetail.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -185,12 +201,26 @@
     <Compile Include="View\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\MyCart.aspx.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\MyCart.aspx.designer.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\TransactionHistory.aspx.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\TransactionHistory.aspx.designer.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\UpdateFootwear.aspx.cs">
       <DependentUpon>UpdateFootwear.aspx</DependentUpon>
@@ -208,6 +238,11 @@
     <Content Include="DBModel.edmx.diagram">
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Assets\css\mdb.dark.min.css.map" />
+    <Content Include="Assets\css\mdb.dark.rtl.min.css.map" />
+    <Content Include="Assets\css\mdb.min.css.map" />
+    <Content Include="Assets\css\mdb.rtl.min.css.map" />
+    <Content Include="Assets\js\mdb.min.js.map" />
     <None Include="packages.config" />
     <Content Include="View\Header.Master" />
     <None Include="Web.Debug.config">

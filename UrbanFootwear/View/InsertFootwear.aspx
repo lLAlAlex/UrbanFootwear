@@ -1,19 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Header.Master" AutoEventWireup="true" CodeBehind="InsertFootwear.aspx.cs" Inherits="UrbanFootwear.View.InsertFootwear" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .container {
-            margin-top: 6vh;
-        }
-        .form-group {
-            margin-top: 2vh;
-        }
-        .insertError {
-            color: red;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
+    <div class="container mt-4">
         <h2>Insert Footwear</h2>
         <asp:Panel ID="insertFootwearPanel" runat="server">
             <div class="form-group">

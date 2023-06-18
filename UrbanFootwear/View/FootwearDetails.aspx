@@ -1,75 +1,56 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Header.Master" AutoEventWireup="true" CodeBehind="FootwearDetails.aspx.cs" Inherits="UrbanFootwear.View.FootwearDetails" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .artistImgContainer {
-            text-align: center;
-            padding: 2vh;
-        }
-        .artistImgContainer h1 {
-            font-size: 4vh;
-            margin-bottom: 2vh;
-        }
-        .artistImgContainer h2 {
-            font-size: 3vh;
-            margin-top: 2vh;
-            margin-bottom: 2vh;
-        }
-        .artistImgContainer div {
-            margin-bottom: 4vh;
-        }
-        .albumImg {
-            width: 20vh;
-            height: 20vh;
-            cursor: pointer;
-        }
-        .albumImgContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .albumInfoContainer {
-            text-align: center;
-        }
-        .albumInfoContainer p {
-            margin-bottom: 1vh;
-        }
-    </style>
-    <script type="text/javascript">
-        function imageClicked(albumId) {
-            window.location.href = "AlbumDetails.aspx?albumId=" + albumId;
-        }
-        function insertClicked(artistId) {
-            window.location.href = "InsertAlbum.aspx?artistId=" + artistId;
-        }
-        function updateAlbum(albumId, artistId) {
-            window.location.href = "UpdateAlbum.aspx?artistId=" + artistId + "&albumId=" + albumId;
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="artistImgContainer">
-        <h1><asp:Label ID="artistNameLabel" runat="server"></asp:Label></h1>
-        <asp:Image ID="artistImage" runat="server"/>
-        <hr/>
-        <h2>Albums:</h2>
-        <hr/>
-        <asp:Repeater ID="albumsRepeater" runat="server">
-            <ItemTemplate>
+    <div class="container mt-4">
+        <h2 class="mb-2">Shoe Details</h2>
+
+        <div class="alert alert-danger mt-4" id="alert" runat="server" style="display: none;">
+            <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
                 <div>
-                    <h3><%# Eval("AlbumName") %></h3>
-                    <p><%# Eval("AlbumDescription") %></p>
-                    <div class="albumImgContainer">
-                        <img class="albumImg" src='<%# ResolveUrl("../Assets/Albums/" + Eval("AlbumImage")) %>' data-image-id='<%# Eval("AlbumID") %>' onclick='<%# "imageClicked(" + Eval("AlbumID") + "); return false;" %>' />
+                    <div>
+                        <h5 class="card-title">
+                            <asp:Label ID="AlbName" runat="server" Font-Bold="True" CssClass="albname"></asp:Label>
+                        </h5>
                     </div>
-                    <div class="albumInfoContainer">
-                        <p>Price: <%# Eval("AlbumPrice") %></p>
-                        <p>Stock: <%# Eval("AlbumStock") %></p>
+                    <div>
+                        <p class="card-text">
+                            <asp:Image ID="AlbImage" runat="server" Height="200px" Width="200px" />
+                        </p>
                     </div>
-                    <asp:Button runat="server" Text="Update" CssClass="btn btn-primary" OnClientClick='<%# "updateAlbum(" + Eval("AlbumID") + ", " + Eval("ArtistID") + "); return false;" %>' />
+                    <div>
+                        <p class="card-text">
+                            <asp:Label ID="lblAlbDesc" runat="server" Text="Description: "></asp:Label>
+                            <asp:Label ID="AlbDesc" runat="server" CssClass="albdetail"></asp:Label>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="card-text">
+                            <asp:Label ID="lblAlbPrice" runat="server" Text="Price: "></asp:Label>
+                            <asp:Label ID="AlbPrice" runat="server" CssClass="albdetail"></asp:Label>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="card-text">
+                            <asp:Label ID="lblAlbStock" runat="server" Text="Stock: "></asp:Label>
+                            <asp:Label ID="AlbStock" runat="server" CssClass="albdetail"></asp:Label>
+                        </p>
+                    </div>
+                    <asp:Label ID="lblQuantity" class="form-label" runat="server" Text="Quantity"></asp:Label>
+                    <div class="input-group mb-3">
+                        <asp:TextBox ID="tbQuantity" runat="server" class="form-control" Text="1"></asp:TextBox>
+                    </div>
+                    <% if (customer.CustomerRole.Equals("user"))
+                        { %>
+                    <asp:Button ID="btnAddToCart" class="btn btn-primary" runat="server" Text="Add To Cart" OnClick="btnAddToCart_Click" />
+                    <% } %>
                 </div>
-                <hr/>
-            </ItemTemplate>
-        </asp:Repeater>
-        <asp:Button runat="server" ID="insertAlbumBtn" Text="Insert Album" CssClass="btn btn-primary" OnClick="insertAlbumBtn_Click" />
+            </div>
+        </div>
     </div>
 </asp:Content>

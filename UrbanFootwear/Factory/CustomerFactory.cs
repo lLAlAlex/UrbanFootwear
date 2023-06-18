@@ -16,7 +16,7 @@ namespace UrbanFootwear.Factory
             c.CustomerGender = gender;
             c.CustomerAddress = address;
             c.CustomerPassword = password;
-            c.CustomerRole = "Customer";
+            c.CustomerRole = "user";
 
             return c;
         }

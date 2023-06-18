@@ -7,33 +7,74 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <style type="text/css">
-        .navbar-brand {
-            margin-left: 2vw;
-        }
-        .registerlink {
-            margin-right: 1vw;
-        }
-        .loginlink {
-            margin-right: 1vw;
-        }
-    </style>
+
+        <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="../Assets/css/mdb.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="/View/Home.aspx">UrbanFootwear</a>
-            <div class="links">
-                <asp:Button ID="logoutbtn" class="navbar-brand btn btn-primary" OnClick="logoutBtnAction" runat="server" Text="Logout" />
-                <a id="registerlink" class="navbar-brand" href="/View/Register.aspx" runat="server" visible="true">Register</a>
-                <a id="loginlink" class="navbar-brand" href="/View/Login.aspx" runat="server" visible="true">Login</a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Urban Footwear</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnHome" class="nav-link" runat="server" OnClick="btHome_Click">Home</asp:LinkButton>
+                            </li>
+                            <% if (customer == null)
+                                {%>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnLogin" class="nav-link" runat="server" OnClick="btLogin_Click">Login</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnRegister" class="nav-link" runat="server" OnClick="btRegister_Click">Register</asp:LinkButton>
+                            </li>
+                            <%}
+                                else if (customer.CustomerRole.Equals("admin"))
+                                { %>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnLogoutAdmin" class="nav-link" runat="server" OnClick="btLogoutC_Click">Logout</asp:LinkButton>
+                            </li>
+                            <%}
+                                else
+                                { %>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnCartUser" class="nav-link" runat="server" OnClick="btCartC_Click">Cart</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnTransactionUser" class="nav-link" runat="server" OnClick="btTransactionC_Click">Transaction</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnLogoutUser" class="nav-link" runat="server" OnClick="btLogoutC_Click">Logout</asp:LinkButton>
+                            </li>
+                            <%} %>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
-        </nav>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
         </div>
+
     </form>
+
+
+    <!-- MDB -->
+    <script type="text/javascript" src="../Assets/js/mdb.min.js"></script>
 </body>
 </html>
